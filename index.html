@@ -6,8 +6,12 @@
 
   <title>Stéphanie Vanschoor — Ingénieure logiciel</title>
 
-  <meta name="description"
-        content="Stéphanie Vanschoor, ingénieure logiciel indépendante en Belgique. Développement web, logiciels sur mesure, automatisation, data, IA, cybersécurité et maintenance.">
+  <meta
+    name="description"
+    content="Stéphanie Vanschoor — Ingénieure logiciel indépendante en Belgique. Développement web, logiciels sur mesure, automatisation, Data & IA, cybersécurité et maintenance."
+  >
+
+  <meta name="author" content="Stéphanie Vanschoor">
 
   <style>
     :root {
@@ -21,7 +25,6 @@
       --muted: #aab7c9;
       --border: rgba(255,255,255,0.09);
       --success: #62e6a7;
-      --warning: #ffd166;
       --max-width: 1150px;
       --radius: 18px;
     }
@@ -37,7 +40,6 @@
     }
 
     body {
-      id: top;
       font-family: Arial, Helvetica, sans-serif;
       background:
         radial-gradient(circle at top left, rgba(124,140,255,0.12), transparent 35%),
@@ -52,8 +54,8 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
+    button {
+      font: inherit;
     }
 
     .container {
@@ -71,7 +73,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(7,17,31,0.88);
+      background: rgba(7,17,31,0.90);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
     }
@@ -93,20 +95,86 @@
       white-space: nowrap;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       list-style: none;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       transition: 0.25s ease;
     }
 
     .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    /* =========================
+       LANGUAGE SELECTOR
+    ========================= */
+
+    .language-selector {
+      position: relative;
+    }
+
+    .language-button {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: 0.25s ease;
+    }
+
+    .language-button:hover {
+      border-color: rgba(94,231,223,0.35);
+      background: rgba(94,231,223,0.07);
+    }
+
+    .language-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 170px;
+      background: #0d1b2e;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 7px;
+      display: none;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    }
+
+    .language-menu.open {
+      display: block;
+    }
+
+    .language-menu button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      text-align: left;
+      padding: 9px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .language-menu button:hover,
+    .language-menu button.active {
+      background: rgba(94,231,223,0.08);
       color: var(--primary);
     }
 
@@ -118,7 +186,7 @@
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 120px 0 80px;
+      padding: 130px 0 80px;
     }
 
     .hero-content {
@@ -155,7 +223,7 @@
     }
 
     .hero p {
-      max-width: 720px;
+      max-width: 750px;
       color: var(--muted);
       font-size: 1.08rem;
       margin-bottom: 32px;
@@ -208,10 +276,10 @@
 
     .section-header {
       margin-bottom: 45px;
-      max-width: 750px;
+      max-width: 800px;
     }
 
-    .section-header .eyebrow {
+    .eyebrow {
       color: var(--primary);
       font-weight: 700;
       text-transform: uppercase;
@@ -230,6 +298,22 @@
     }
 
     /* =========================
+       CARDS
+    ========================= */
+
+    .card,
+    .skill,
+    .project-card,
+    .creation,
+    .service-card,
+    .pack,
+    .condition-box {
+      background: rgba(16,31,51,0.82);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    /* =========================
        ABOUT
     ========================= */
 
@@ -240,9 +324,6 @@
     }
 
     .card {
-      background: rgba(16,31,51,0.82);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       padding: 28px;
     }
 
@@ -266,19 +347,20 @@
 
     .skill {
       padding: 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       transition: 0.25s ease;
     }
 
-    .skill:hover {
+    .skill:hover,
+    .service-card:hover,
+    .creation:hover,
+    .project-card:hover {
       transform: translateY(-4px);
       background: var(--card-hover);
     }
 
-    .skill-icon {
-      font-size: 1.8rem;
+    .skill-icon,
+    .service-icon {
+      font-size: 1.9rem;
       margin-bottom: 12px;
     }
 
@@ -295,34 +377,29 @@
        PROJECTS
     ========================= */
 
-    .projects-grid {
+    .projects-grid,
+    .creations-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
     }
 
     .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       overflow: hidden;
       transition: 0.25s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      background: var(--card-hover);
     }
 
     .project-content {
       padding: 25px;
     }
 
-    .project-content h3 {
+    .project-content h3,
+    .creation h3 {
       margin-bottom: 10px;
     }
 
-    .project-content p {
+    .project-content p,
+    .creation p {
       color: var(--muted);
       margin-bottom: 18px;
     }
@@ -332,15 +409,22 @@
       font-weight: 700;
     }
 
+    .creation {
+      padding: 26px;
+      transition: 0.25s ease;
+    }
+
     /* =========================
-       SERVICES / TARIFS
+       PRICING
     ========================= */
 
     .pricing-intro {
       background:
-        linear-gradient(135deg,
+        linear-gradient(
+          135deg,
           rgba(94,231,223,0.08),
-          rgba(124,140,255,0.08));
+          rgba(124,140,255,0.08)
+        );
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 30px;
@@ -356,25 +440,12 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 18px;
-      margin-bottom: 45px;
+      margin-bottom: 50px;
     }
 
     .service-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
       padding: 24px;
       transition: 0.25s ease;
-    }
-
-    .service-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(94,231,223,0.25);
-    }
-
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
     }
 
     .service-card h3 {
@@ -384,7 +455,7 @@
     .service-card p {
       color: var(--muted);
       font-size: 0.9rem;
-      min-height: 48px;
+      min-height: 55px;
     }
 
     .price {
@@ -399,13 +470,13 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      margin-bottom: 40px;
+      margin-bottom: 45px;
     }
 
     .pricing-table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 720px;
+      min-width: 750px;
     }
 
     .pricing-table th,
@@ -438,18 +509,17 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 45px;
     }
 
     .pack {
-      background: linear-gradient(
-        145deg,
-        rgba(124,140,255,0.11),
-        rgba(94,231,223,0.05)
-      );
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       padding: 28px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(124,140,255,0.11),
+          rgba(94,231,223,0.05)
+        );
     }
 
     .pack h3 {
@@ -473,9 +543,6 @@
     }
 
     .condition-box {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
       padding: 25px;
     }
 
@@ -512,40 +579,16 @@
     }
 
     /* =========================
-       CREATIONS
-    ========================= */
-
-    .creations-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .creation {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px;
-    }
-
-    .creation h3 {
-      margin-bottom: 10px;
-    }
-
-    .creation p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    /* =========================
        CONTACT
     ========================= */
 
     .contact-box {
       background:
-        linear-gradient(135deg,
+        linear-gradient(
+          135deg,
           rgba(94,231,223,0.08),
-          rgba(124,140,255,0.10));
+          rgba(124,140,255,0.10)
+        );
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 45px;
@@ -559,7 +602,7 @@
 
     .contact-box p {
       color: var(--muted);
-      max-width: 650px;
+      max-width: 700px;
       margin: 0 auto 25px;
     }
 
@@ -592,7 +635,7 @@
     }
 
     /* =========================
-       ANIMATION
+       REVEAL
     ========================= */
 
     .reveal {
@@ -607,10 +650,88 @@
     }
 
     /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 1050px) {
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a {
+        font-size: 0.82rem;
+      }
+
+      .services-grid,
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 800px) {
+
+      .nav-inner {
+        min-height: 65px;
+      }
+
+      .nav-right {
+        gap: 10px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .about-grid,
+      .conditions {
+        grid-template-columns: 1fr;
+      }
+
+      .projects-grid,
+      .creations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .packs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 75px 0;
+      }
+
+      .hero {
+        padding-top: 110px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .services-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-box {
+        padding: 30px 20px;
+      }
+
+      .language-menu {
+        right: -5px;
+      }
+    }
+
+    /* =========================
        PRINT
     ========================= */
 
     @media print {
+
       body {
         background: white;
         color: black;
@@ -642,83 +763,23 @@
       .pricing-table-wrapper,
       .pack,
       .condition-box {
-        color: black;
         background: white;
+        color: black;
         border: 1px solid #ccc;
         break-inside: avoid;
       }
 
-      .section-header h2,
-      .section-header p,
       .pricing-intro p,
-      .service-card h3,
       .service-card p,
       .pricing-table td,
-      .pack h3,
       .pack p,
-      .condition-box h3,
       .condition-box li {
         color: black;
       }
 
       .price,
       .pricing-table th {
-        color: #111;
-      }
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 950px) {
-      .skills-grid,
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .projects-grid,
-      .creations-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .packs {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav-inner {
-        min-height: 65px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 110px;
-      }
-
-      .about-grid,
-      .conditions,
-      .projects-grid,
-      .creations-grid,
-      .skills-grid,
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 75px 0;
-      }
-
-      .contact-box {
-        padding: 30px 20px;
-      }
-
-      .hero h1 {
-        letter-spacing: -2px;
+        color: black;
       }
     }
   </style>
@@ -733,18 +794,74 @@
   <nav>
     <div class="nav-inner">
 
-      <a href="#top" class="logo">
-        SV
-      </a>
+      <a href="#top" class="logo">SV</a>
 
-      <ul class="nav-links">
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#competences">Compétences</a></li>
-        <li><a href="#projets">Projets</a></li>
-        <li><a href="#creations">Créations</a></li>
-        <li><a href="#tarifs">Tarifs</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+
+        <ul class="nav-links">
+
+          <li>
+            <a href="#apropos" data-i18n="nav.about">À propos</a>
+          </li>
+
+          <li>
+            <a href="#competences" data-i18n="nav.skills">Compétences</a>
+          </li>
+
+          <li>
+            <a href="#projets" data-i18n="nav.projects">Projets</a>
+          </li>
+
+          <li>
+            <a href="#creations" data-i18n="nav.creations">Créations</a>
+          </li>
+
+          <li>
+            <a href="#tarifs" data-i18n="nav.pricing">Tarifs</a>
+          </li>
+
+          <li>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
+          </li>
+
+        </ul>
+
+        <div class="language-selector">
+
+          <button
+            class="language-button"
+            id="languageButton"
+            aria-label="Choisir la langue">
+            🇫🇷 <span id="currentLanguage">FR</span> ▾
+          </button>
+
+          <div class="language-menu" id="languageMenu">
+
+            <button data-lang="fr">
+              🇫🇷 Français
+            </button>
+
+            <button data-lang="en">
+              🇬🇧 English
+            </button>
+
+            <button data-lang="nl">
+              🇳🇱 Nederlands
+            </button>
+
+            <button data-lang="de">
+              🇩🇪 Deutsch
+            </button>
+
+            <button data-lang="es">
+              🇪🇸 Español
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
   </nav>
@@ -755,11 +872,12 @@
   ========================== -->
 
   <header class="hero">
+
     <div class="container">
 
       <div class="hero-content reveal">
 
-        <div class="badge">
+        <div class="badge" data-i18n="hero.badge">
           🇧🇪 Belgique · Liège · Indépendante
         </div>
 
@@ -767,11 +885,11 @@
           Stéphanie <span>Vanschoor</span>
         </h1>
 
-        <h2>
+        <h2 data-i18n="hero.title">
           Ingénieure logiciel · Software Engineer
         </h2>
 
-        <p>
+        <p data-i18n="hero.description">
           Je propose des services de développement web et logiciel sur mesure
           pour les particuliers, indépendants, ASBL et entreprises.
           Je transforme vos idées en sites web, applications et solutions
@@ -779,23 +897,32 @@
         </p>
 
         <div class="buttons">
-          <a href="#tarifs" class="btn btn-primary">
+
+          <a
+            href="#tarifs"
+            class="btn btn-primary"
+            data-i18n="hero.services">
             Voir mes services
           </a>
 
-          <a href="#contact" class="btn btn-secondary">
+          <a
+            href="#contact"
+            class="btn btn-secondary"
+            data-i18n="hero.contact">
             Me contacter
           </a>
+
         </div>
 
       </div>
 
     </div>
+
   </header>
 
 
   <!-- =========================
-       À PROPOS
+       ABOUT
   ========================== -->
 
   <section id="apropos">
@@ -803,37 +930,49 @@
     <div class="container">
 
       <div class="section-header reveal">
-        <div class="eyebrow">About · À propos</div>
 
-        <h2>
+        <div class="eyebrow" data-i18n="about.eyebrow">
+          About · À propos
+        </div>
+
+        <h2 data-i18n="about.title">
           Des solutions numériques pensées pour vos besoins.
         </h2>
 
-        <p>
+        <p data-i18n="about.description">
           Développement logiciel, création web et accompagnement technique :
           mon objectif est de construire des solutions utiles, modernes et
           faciles à utiliser.
         </p>
+
       </div>
 
       <div class="about-grid">
 
         <div class="card reveal">
-          <h3>💻 Développement</h3>
 
-          <p>
+          <h3 data-i18n="about.devTitle">
+            💻 Développement
+          </h3>
+
+          <p data-i18n="about.devText">
             Création de sites web, applications et logiciels personnalisés
             adaptés aux besoins spécifiques de chaque projet.
           </p>
+
         </div>
 
         <div class="card reveal">
-          <h3>🤝 Accompagnement</h3>
 
-          <p>
+          <h3 data-i18n="about.supportTitle">
+            🤝 Accompagnement
+          </h3>
+
+          <p data-i18n="about.supportText">
             Une approche simple et transparente, de l'analyse du besoin
             jusqu'à la mise en ligne et la maintenance.
           </p>
+
         </div>
 
       </div>
@@ -844,7 +983,7 @@
 
 
   <!-- =========================
-       COMPÉTENCES
+       SKILLS
   ========================== -->
 
   <section id="competences">
@@ -853,15 +992,15 @@
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="skills.eyebrow">
           Skills · Compétences
         </div>
 
-        <h2>
+        <h2 data-i18n="skills.title">
           Un profil polyvalent.
         </h2>
 
-        <p>
+        <p data-i18n="skills.description">
           Des compétences techniques pour accompagner différents types
           de projets numériques.
         </p>
@@ -871,35 +1010,59 @@
       <div class="skills-grid">
 
         <div class="skill reveal">
+
           <div class="skill-icon">🌐</div>
-          <h3>Web</h3>
-          <p>
+
+          <h3 data-i18n="skills.webTitle">
+            Web
+          </h3>
+
+          <p data-i18n="skills.webText">
             Sites vitrines, interfaces web, responsive design et intégration.
           </p>
+
         </div>
 
         <div class="skill reveal">
+
           <div class="skill-icon">⚙️</div>
-          <h3>Logiciel</h3>
-          <p>
+
+          <h3 data-i18n="skills.softwareTitle">
+            Logiciel
+          </h3>
+
+          <p data-i18n="skills.softwareText">
             Applications et outils métier développés sur mesure.
           </p>
+
         </div>
 
         <div class="skill reveal">
+
           <div class="skill-icon">🤖</div>
-          <h3>Data & IA</h3>
-          <p>
+
+          <h3 data-i18n="skills.aiTitle">
+            Data & IA
+          </h3>
+
+          <p data-i18n="skills.aiText">
             Automatisation, traitement de données et intégration de solutions IA.
           </p>
+
         </div>
 
         <div class="skill reveal">
+
           <div class="skill-icon">🔐</div>
-          <h3>Cybersécurité</h3>
-          <p>
+
+          <h3 data-i18n="skills.securityTitle">
+            Cybersécurité
+          </h3>
+
+          <p data-i18n="skills.securityText">
             Audit, bonnes pratiques et amélioration de la sécurité technique.
           </p>
+
         </div>
 
       </div>
@@ -910,7 +1073,7 @@
 
 
   <!-- =========================
-       PROJETS
+       PROJECTS
   ========================== -->
 
   <section id="projets">
@@ -919,15 +1082,15 @@
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="projects.eyebrow">
           Projects · Projets
         </div>
 
-        <h2>
+        <h2 data-i18n="projects.title">
           Quelques projets.
         </h2>
 
-        <p>
+        <p data-i18n="projects.description">
           Découvrez une sélection de mes réalisations et expérimentations.
         </p>
 
@@ -941,7 +1104,7 @@
 
             <h3>Nexora</h3>
 
-            <p>
+            <p data-i18n="projects.nexora">
               Projet web développé pour présenter une solution numérique
               avec une interface moderne et responsive.
             </p>
@@ -950,7 +1113,8 @@
               href="https://stephanie-vanschoor.github.io/Nexora/"
               target="_blank"
               rel="noopener noreferrer"
-              class="project-link">
+              class="project-link"
+              data-i18n="projects.discover">
               Découvrir Nexora →
             </a>
 
@@ -964,7 +1128,7 @@
 
             <h3>Portfolio</h3>
 
-            <p>
+            <p data-i18n="projects.portfolio">
               Mon portfolio professionnel présentant mon profil,
               mes compétences, mes projets et mes services.
             </p>
@@ -973,7 +1137,8 @@
               href="https://stephanie-vanschoor.github.io/site-web-ing-nieur-logiciel/"
               target="_blank"
               rel="noopener noreferrer"
-              class="project-link">
+              class="project-link"
+              data-i18n="projects.viewPortfolio">
               Voir le portfolio →
             </a>
 
@@ -985,14 +1150,19 @@
 
           <div class="project-content">
 
-            <h3>Solutions sur mesure</h3>
+            <h3 data-i18n="projects.customTitle">
+              Solutions sur mesure
+            </h3>
 
-            <p>
+            <p data-i18n="projects.customText">
               Développement d'outils numériques adaptés aux besoins
               particuliers d'indépendants et d'entreprises.
             </p>
 
-            <a href="#tarifs" class="project-link">
+            <a
+              href="#tarifs"
+              class="project-link"
+              data-i18n="projects.viewServices">
               Voir les services →
             </a>
 
@@ -1008,7 +1178,7 @@
 
 
   <!-- =========================
-       CRÉATIONS
+       CREATIONS
   ========================== -->
 
   <section id="creations">
@@ -1017,15 +1187,15 @@
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="creations.eyebrow">
           Creations · Créations
         </div>
 
-        <h2>
+        <h2 data-i18n="creations.title">
           Mes créations.
         </h2>
 
-        <p>
+        <p data-i18n="creations.description">
           Retrouvez également mes projets créatifs et produits numériques.
         </p>
 
@@ -1037,7 +1207,7 @@
 
           <h3>🎮 Itch.io</h3>
 
-          <p>
+          <p data-i18n="creations.itch">
             Découvrez mes créations et expérimentations autour du jeu
             et du développement créatif.
           </p>
@@ -1046,7 +1216,8 @@
             href="https://stvan.itch.io/"
             target="_blank"
             rel="noopener noreferrer"
-            class="project-link">
+            class="project-link"
+            data-i18n="creations.visitItch">
             Visiter Itch.io →
           </a>
 
@@ -1056,7 +1227,7 @@
 
           <h3>🛍️ Payhip</h3>
 
-          <p>
+          <p data-i18n="creations.payhip">
             Retrouvez mes produits et ressources numériques disponibles
             en ligne.
           </p>
@@ -1065,7 +1236,8 @@
             href="https://payhip.com/b/s4ZV8"
             target="_blank"
             rel="noopener noreferrer"
-            class="project-link">
+            class="project-link"
+            data-i18n="creations.visitPayhip">
             Voir sur Payhip →
           </a>
 
@@ -1075,7 +1247,7 @@
 
           <h3>🚀 Nexora</h3>
 
-          <p>
+          <p data-i18n="creations.nexora">
             Une réalisation web accessible directement en ligne.
           </p>
 
@@ -1083,7 +1255,8 @@
             href="https://stephanie-vanschoor.github.io/Nexora/"
             target="_blank"
             rel="noopener noreferrer"
-            class="project-link">
+            class="project-link"
+            data-i18n="creations.discoverNexora">
             Découvrir Nexora →
           </a>
 
@@ -1097,7 +1270,7 @@
 
 
   <!-- =========================
-       TARIFS & SERVICES
+       PRICING
   ========================== -->
 
   <section id="tarifs">
@@ -1106,15 +1279,15 @@
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="pricing.eyebrow">
           Services · Pricing
         </div>
 
-        <h2>
+        <h2 data-i18n="pricing.title">
           Tarifs & Services 2026
         </h2>
 
-        <p>
+        <p data-i18n="pricing.description">
           Des prestations de développement et d'accompagnement adaptées
           aux PME, ASBL, indépendants et porteurs de projets.
         </p>
@@ -1128,7 +1301,7 @@
           Stéphanie Vanschoor
         </h3>
 
-        <p>
+        <p data-i18n="pricing.intro">
           Ingénieure logiciel indépendante — Facturation via Smart Liège.
           Les tarifs ci-dessous sont indicatifs et peuvent être adaptés
           selon la complexité, les fonctionnalités et les besoins du projet.
@@ -1138,13 +1311,15 @@
 
           <button
             onclick="window.print()"
-            class="btn btn-primary">
+            class="btn btn-primary"
+            data-i18n="pricing.print">
             🖨️ Imprimer / Enregistrer en PDF
           </button>
 
           <a
             href="mailto:leurquinstephanie@gmail.com"
-            class="btn btn-secondary">
+            class="btn btn-secondary"
+            data-i18n="pricing.quote">
             ✉️ Demander un devis
           </a>
 
@@ -1158,199 +1333,265 @@
       <div class="services-grid">
 
         <div class="service-card reveal">
+
           <div class="service-icon">🌐</div>
-          <h3>Site web</h3>
-          <p>
+
+          <h3 data-i18n="services.websiteTitle">
+            Site web
+          </h3>
+
+          <p data-i18n="services.websiteText">
             Création de sites modernes, responsives et adaptés à votre activité.
           </p>
+
           <div class="price">
-            Dès 1 200 €
+            <span data-i18n="services.from">Dès</span> 1 200 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">💻</div>
-          <h3>Logiciel sur mesure</h3>
-          <p>
+
+          <h3 data-i18n="services.softwareTitle">
+            Logiciel sur mesure
+          </h3>
+
+          <p data-i18n="services.softwareText">
             Applications et outils métier conçus selon vos besoins.
           </p>
+
           <div class="price">
-            Dès 5 000 €
+            <span data-i18n="services.from">Dès</span> 5 000 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">⚡</div>
-          <h3>Automatisation</h3>
-          <p>
+
+          <h3 data-i18n="services.automationTitle">
+            Automatisation
+          </h3>
+
+          <p data-i18n="services.automationText">
             Automatisation des tâches répétitives et optimisation des processus.
           </p>
+
           <div class="price">
-            Dès 1 500 €
+            <span data-i18n="services.from">Dès</span> 1 500 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">📊</div>
-          <h3>Data & IA</h3>
-          <p>
+
+          <h3 data-i18n="services.dataTitle">
+            Data & IA
+          </h3>
+
+          <p data-i18n="services.dataText">
             Données, tableaux de bord et intégration de solutions IA.
           </p>
+
           <div class="price">
-            Dès 2 500 €
+            <span data-i18n="services.from">Dès</span> 2 500 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">🔐</div>
-          <h3>Cybersécurité</h3>
-          <p>
+
+          <h3 data-i18n="services.securityTitle">
+            Cybersécurité
+          </h3>
+
+          <p data-i18n="services.securityText">
             Audit technique, sécurité et recommandations d'amélioration.
           </p>
+
           <div class="price">
-            Dès 900 €
+            <span data-i18n="services.from">Dès</span> 900 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">🛠️</div>
-          <h3>Maintenance</h3>
-          <p>
+
+          <h3 data-i18n="services.maintenanceTitle">
+            Maintenance
+          </h3>
+
+          <p data-i18n="services.maintenanceText">
             Suivi, corrections et évolutions de votre solution.
           </p>
+
           <div class="price">
-            Dès 150 €/mois
+            <span data-i18n="services.from">Dès</span> 150 €/mois
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">🔎</div>
-          <h3>Audit & conseil</h3>
-          <p>
+
+          <h3 data-i18n="services.auditTitle">
+            Audit & conseil
+          </h3>
+
+          <p data-i18n="services.auditText">
             Analyse technique et accompagnement dans vos choix numériques.
           </p>
+
           <div class="price">
-            Dès 600 €
+            <span data-i18n="services.from">Dès</span> 600 €
           </div>
+
         </div>
 
+
         <div class="service-card reveal">
+
           <div class="service-icon">🎓</div>
-          <h3>Formation</h3>
-          <p>
+
+          <h3 data-i18n="services.trainingTitle">
+            Formation
+          </h3>
+
+          <p data-i18n="services.trainingText">
             Formation et accompagnement technique adaptés à votre niveau.
           </p>
+
           <div class="price">
-            Dès 600 €/jour
+            <span data-i18n="services.from">Dès</span> 600 €/jour
           </div>
+
         </div>
 
       </div>
 
 
-      <!-- GRILLE TARIFAIRE -->
+      <!-- TABLE -->
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="pricing.detailsEyebrow">
           Detailed pricing
         </div>
 
-        <h2>
+        <h2 data-i18n="pricing.detailsTitle">
           Grille tarifaire
         </h2>
 
       </div>
+
 
       <div class="pricing-table-wrapper reveal">
 
         <table class="pricing-table">
 
           <thead>
+
             <tr>
-              <th>Prestation</th>
-              <th>Description</th>
-              <th>Tarif indicatif</th>
+              <th data-i18n="table.service">Prestation</th>
+              <th data-i18n="table.description">Description</th>
+              <th data-i18n="table.price">Tarif indicatif</th>
             </tr>
+
           </thead>
 
           <tbody>
 
             <tr>
-              <td>Site vitrine</td>
-              <td>Jusqu'à 5 pages</td>
+              <td data-i18n="table.site">Site vitrine</td>
+              <td data-i18n="table.siteDesc">Jusqu'à 5 pages</td>
               <td>1 200 €</td>
             </tr>
 
             <tr>
-              <td>Site e-commerce léger</td>
-              <td>Boutique en ligne avec fonctionnalités essentielles</td>
+              <td data-i18n="table.shop">Site e-commerce léger</td>
+              <td data-i18n="table.shopDesc">Boutique en ligne avec fonctionnalités essentielles</td>
               <td>2 800 €</td>
             </tr>
 
             <tr>
-              <td>Petit outil interne</td>
-              <td>Application métier simple</td>
+              <td data-i18n="table.internal">Petit outil interne</td>
+              <td data-i18n="table.internalDesc">Application métier simple</td>
               <td>5 000 €</td>
             </tr>
 
             <tr>
-              <td>Logiciel métier complet</td>
-              <td>Solution personnalisée selon cahier des charges</td>
-              <td>Sur devis</td>
+              <td data-i18n="table.business">Logiciel métier complet</td>
+              <td data-i18n="table.businessDesc">Solution personnalisée selon cahier des charges</td>
+              <td data-i18n="table.quote">Sur devis</td>
             </tr>
 
             <tr>
-              <td>Automatisation de tâches</td>
-              <td>Automatisation d'un processus</td>
+              <td data-i18n="table.automation">Automatisation de tâches</td>
+              <td data-i18n="table.automationDesc">Automatisation d'un processus</td>
               <td>1 500 €</td>
             </tr>
 
             <tr>
-              <td>Intégration API</td>
-              <td>Connexion avec un service externe</td>
+              <td data-i18n="table.api">Intégration API</td>
+              <td data-i18n="table.apiDesc">Connexion avec un service externe</td>
               <td>2 500 €</td>
             </tr>
 
             <tr>
-              <td>Tableau de bord data</td>
-              <td>Visualisation et suivi des données</td>
+              <td data-i18n="table.dashboard">Tableau de bord data</td>
+              <td data-i18n="table.dashboardDesc">Visualisation et suivi des données</td>
               <td>2 500 €</td>
             </tr>
 
             <tr>
-              <td>Intégration IA</td>
-              <td>Intégration d'une solution d'intelligence artificielle</td>
+              <td data-i18n="table.ai">Intégration IA</td>
+              <td data-i18n="table.aiDesc">Intégration d'une solution d'intelligence artificielle</td>
               <td>3 500 €</td>
             </tr>
 
             <tr>
-              <td>Audit technique / sécurité</td>
-              <td>Analyse et recommandations</td>
+              <td data-i18n="table.audit">Audit technique / sécurité</td>
+              <td data-i18n="table.auditDesc">Analyse et recommandations</td>
               <td>600 €</td>
             </tr>
 
             <tr>
-              <td>Maintenance essentielle</td>
-              <td>Suivi et corrections</td>
+              <td data-i18n="table.maintenanceBasic">Maintenance essentielle</td>
+              <td data-i18n="table.maintenanceBasicDesc">Suivi et corrections</td>
               <td>150 €/mois</td>
             </tr>
 
             <tr>
-              <td>Maintenance confort</td>
-              <td>Suivi, corrections et petites évolutions</td>
+              <td data-i18n="table.maintenanceComfort">Maintenance confort</td>
+              <td data-i18n="table.maintenanceComfortDesc">Suivi, corrections et petites évolutions</td>
               <td>300 €/mois</td>
             </tr>
 
             <tr>
-              <td>Formation</td>
-              <td>1 journée</td>
+              <td data-i18n="table.training">Formation</td>
+              <td data-i18n="table.trainingDesc">1 journée</td>
               <td>600 €</td>
             </tr>
 
             <tr>
-              <td>TJM</td>
-              <td>Tarif journalier moyen</td>
+              <td data-i18n="table.dailyRate">TJM</td>
+              <td data-i18n="table.dailyRateDesc">Tarif journalier moyen</td>
               <td>450 €/jour</td>
             </tr>
 
@@ -1361,108 +1602,66 @@
       </div>
 
 
-      <!-- PACKS -->
+      <!-- PACKAGES -->
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="packs.eyebrow">
           Packages · Packs
         </div>
 
-        <h2>
+        <h2 data-i18n="packs.title">
           Des formules simples.
         </h2>
 
       </div>
 
+
       <div class="packs">
 
         <div class="pack reveal">
 
-          <h3>🌐 Présence web</h3>
+          <h3 data-i18n="packs.webTitle">
+            🌐 Présence web
+          </h3>
 
-          <p>
+          <p data-i18n="packs.webText">
             Une solution simple pour lancer ou moderniser votre présence
             en ligne.
           </p>
 
-          <div class="price">
-            900 €
-          </div>
+          <div class="price">900 €</div>
 
         </div>
 
+
         <div class="pack reveal">
 
-          <h3>⚙️ Digitalisation</h3>
+          <h3 data-i18n="packs.digitalTitle">
+            ⚙️ Digitalisation
+          </h3>
 
-          <p>
+          <p data-i18n="packs.digitalText">
             Un accompagnement pour transformer un processus manuel
             en solution numérique.
           </p>
 
-          <div class="price">
-            2 500 €
-          </div>
+          <div class="price">2 500 €</div>
 
         </div>
+
 
         <div class="pack reveal">
 
-          <h3>🛡️ Sérénité IT</h3>
+          <h3 data-i18n="packs.itTitle">
+            🛡️ Sérénité IT
+          </h3>
 
-          <p>
+          <p data-i18n="packs.itText">
             Maintenance et accompagnement régulier pour votre solution.
           </p>
 
-          <div class="price">
-            250 €/mois
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <!-- EXEMPLES -->
-
-      <div class="section-header reveal">
-
-        <div class="eyebrow">
-          Missions
-        </div>
-
-        <h2>
-          Exemples de missions
-        </h2>
-
-      </div>
-
-      <div class="conditions">
-
-        <div class="condition-box reveal">
-
-          <h3>🏢 Entreprises & ASBL</h3>
-
-          <ul>
-            <li>Création de site web</li>
-            <li>Digitalisation de processus</li>
-            <li>Outils internes</li>
-            <li>Automatisation</li>
-          </ul>
-
-        </div>
-
-        <div class="condition-box reveal">
-
-          <h3>👩‍💼 Indépendants</h3>
-
-          <ul>
-            <li>Présence professionnelle en ligne</li>
-            <li>Création d'outils personnalisés</li>
-            <li>Automatisation administrative</li>
-            <li>Accompagnement numérique</li>
-          </ul>
+          <div class="price">250 €/mois</div>
 
         </div>
 
@@ -1473,41 +1672,76 @@
 
       <div class="section-header reveal">
 
-        <div class="eyebrow">
+        <div class="eyebrow" data-i18n="conditions.eyebrow">
           Conditions
         </div>
 
-        <h2>
+        <h2 data-i18n="conditions.title">
           Conditions commerciales
         </h2>
 
       </div>
 
+
       <div class="conditions">
 
         <div class="condition-box reveal">
 
-          <h3>💳 Paiement</h3>
+          <h3 data-i18n="conditions.paymentTitle">
+            💳 Paiement
+          </h3>
 
           <ul>
-            <li>Devis gratuit sous 48 h</li>
-            <li>Acompte de 30 %</li>
-            <li>Solde à la livraison</li>
-            <li>Paiement à 15 jours</li>
+
+            <li data-i18n="conditions.quote">
+              Devis gratuit sous 48 h
+            </li>
+
+            <li data-i18n="conditions.deposit">
+              Acompte de 30 %
+            </li>
+
+            <li data-i18n="conditions.balance">
+              Solde à la livraison
+            </li>
+
+            <li data-i18n="conditions.payment">
+              Paiement à 15 jours
+            </li>
+
           </ul>
 
         </div>
 
+
         <div class="condition-box reveal">
 
-          <h3>📍 Informations</h3>
+          <h3 data-i18n="conditions.infoTitle">
+            📍 Informations
+          </h3>
 
           <ul>
-            <li>Facturation via Smart Liège</li>
-            <li>TVA BE en vigueur</li>
-            <li>Déplacement Liège inclus</li>
-            <li>Hors Liège : 0,40 €/km</li>
-            <li>Tarifs valables jusqu'au 31/12/2026</li>
+
+            <li data-i18n="conditions.smart">
+              Facturation via Smart Liège
+            </li>
+
+            <li data-i18n="conditions.vat">
+              TVA BE en vigueur
+            </li>
+
+            <li data-i18n="conditions.travel">
+              Déplacement Liège inclus
+            </li>
+
+            <li data-i18n="conditions.km">
+              Hors Liège : 0,40 €/km
+            </li>
+
+            <li data-i18n="conditions.validity">
+              Tarifs valables jusqu'au 31/12/2026
+            </li>
+
           </ul>
 
         </div>
@@ -1515,13 +1749,15 @@
       </div>
 
 
+      <!-- CTA -->
+
       <div class="pricing-intro reveal">
 
-        <h3>
+        <h3 data-i18n="pricing.different">
           Un projet différent ?
         </h3>
 
-        <p>
+        <p data-i18n="pricing.differentText">
           Chaque projet est unique. Un devis personnalisé peut être établi
           selon vos objectifs, vos contraintes et les fonctionnalités souhaitées.
         </p>
@@ -1530,7 +1766,8 @@
 
           <a
             href="mailto:leurquinstephanie@gmail.com?subject=Demande%20de%20devis"
-            class="btn btn-primary">
+            class="btn btn-primary"
+            data-i18n="pricing.askQuote">
             ✉️ Demander un devis
           </a>
 
@@ -1559,11 +1796,11 @@
 
       <div class="contact-box reveal">
 
-        <h2>
+        <h2 data-i18n="contact.title">
           Vous avez un projet ?
         </h2>
 
-        <p>
+        <p data-i18n="contact.description">
           Parlons de votre idée et voyons ensemble comment la transformer
           en une solution numérique concrète.
         </p>
@@ -1572,13 +1809,15 @@
 
           <a
             href="mailto:leurquinstephanie@gmail.com"
-            class="btn btn-primary">
+            class="btn btn-primary"
+            data-i18n="contact.email">
             ✉️ Envoyer un email
           </a>
 
           <a
             href="tel:+32495932709"
-            class="btn btn-secondary">
+            class="btn btn-secondary"
+            data-i18n="contact.call">
             📞 Appeler
           </a>
 
@@ -1594,7 +1833,7 @@
             +32 495 93 27 09
           </a>
 
-          <span>
+          <span data-i18n="contact.location">
             🇧🇪 Belgique · Liège
           </span>
 
@@ -1617,11 +1856,11 @@
 
       <p>
         © 2026 <strong>Stéphanie Vanschoor</strong> —
-        Ingénieure logiciel
+        <span data-i18n="footer.role">Ingénieure logiciel</span>
       </p>
 
       <p style="margin-top:8px;">
-        <a href="#top">
+        <a href="#top" data-i18n="footer.top">
           ↑ Retour en haut
         </a>
       </p>
@@ -1637,65 +1876,1382 @@
 
   <script>
 
-    /*
-     * Animation d'apparition au défilement
-     */
+    const translations = {
 
-    const observer = new IntersectionObserver(
-      (entries) => {
+      /* =====================================================
+         FRANÇAIS
+      ===================================================== */
 
-        entries.forEach((entry) => {
+      fr: {
 
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
+        nav: {
+          about: "À propos",
+          skills: "Compétences",
+          projects: "Projets",
+          creations: "Créations",
+          pricing: "Tarifs",
+          contact: "Contact"
+        },
+
+        hero: {
+          badge: "🇧🇪 Belgique · Liège · Indépendante",
+          title: "Ingénieure logiciel · Software Engineer",
+          description:
+            "Je propose des services de développement web et logiciel sur mesure pour les particuliers, indépendants, ASBL et entreprises. Je transforme vos idées en sites web, applications et solutions numériques modernes, adaptées à vos besoins.",
+          services: "Voir mes services",
+          contact: "Me contacter"
+        },
+
+        about: {
+          eyebrow: "About · À propos",
+          title: "Des solutions numériques pensées pour vos besoins.",
+          description:
+            "Développement logiciel, création web et accompagnement technique : mon objectif est de construire des solutions utiles, modernes et faciles à utiliser.",
+          devTitle: "💻 Développement",
+          devText:
+            "Création de sites web, applications et logiciels personnalisés adaptés aux besoins spécifiques de chaque projet.",
+          supportTitle: "🤝 Accompagnement",
+          supportText:
+            "Une approche simple et transparente, de l'analyse du besoin jusqu'à la mise en ligne et la maintenance."
+        },
+
+        skills: {
+          eyebrow: "Skills · Compétences",
+          title: "Un profil polyvalent.",
+          description:
+            "Des compétences techniques pour accompagner différents types de projets numériques.",
+          webTitle: "Web",
+          webText:
+            "Sites vitrines, interfaces web, responsive design et intégration.",
+          softwareTitle: "Logiciel",
+          softwareText:
+            "Applications et outils métier développés sur mesure.",
+          aiTitle: "Data & IA",
+          aiText:
+            "Automatisation, traitement de données et intégration de solutions IA.",
+          securityTitle: "Cybersécurité",
+          securityText:
+            "Audit, bonnes pratiques et amélioration de la sécurité technique."
+        },
+
+        projects: {
+          eyebrow: "Projects · Projets",
+          title: "Quelques projets.",
+          description:
+            "Découvrez une sélection de mes réalisations et expérimentations.",
+          nexora:
+            "Projet web développé pour présenter une solution numérique avec une interface moderne et responsive.",
+          discover: "Découvrir Nexora →",
+          portfolio:
+            "Mon portfolio professionnel présentant mon profil, mes compétences, mes projets et mes services.",
+          viewPortfolio: "Voir le portfolio →",
+          customTitle: "Solutions sur mesure",
+          customText:
+            "Développement d'outils numériques adaptés aux besoins particuliers d'indépendants et d'entreprises.",
+          viewServices: "Voir les services →"
+        },
+
+        creations: {
+          eyebrow: "Creations · Créations",
+          title: "Mes créations.",
+          description:
+            "Retrouvez également mes projets créatifs et produits numériques.",
+          itch:
+            "Découvrez mes créations et expérimentations autour du jeu et du développement créatif.",
+          visitItch: "Visiter Itch.io →",
+          payhip:
+            "Retrouvez mes produits et ressources numériques disponibles en ligne.",
+          visitPayhip: "Voir sur Payhip →",
+          nexora:
+            "Une réalisation web accessible directement en ligne.",
+          discoverNexora: "Découvrir Nexora →"
+        },
+
+        pricing: {
+          eyebrow: "Services · Pricing",
+          title: "Tarifs & Services 2026",
+          description:
+            "Des prestations de développement et d'accompagnement adaptées aux PME, ASBL, indépendants et porteurs de projets.",
+          intro:
+            "Ingénieure logiciel indépendante — Facturation via Smart Liège. Les tarifs ci-dessous sont indicatifs et peuvent être adaptés selon la complexité, les fonctionnalités et les besoins du projet.",
+          print: "🖨️ Imprimer / Enregistrer en PDF",
+          quote: "✉️ Demander un devis",
+          detailsEyebrow: "Detailed pricing",
+          detailsTitle: "Grille tarifaire",
+          different: "Un projet différent ?",
+          differentText:
+            "Chaque projet est unique. Un devis personnalisé peut être établi selon vos objectifs, vos contraintes et les fonctionnalités souhaitées.",
+          askQuote: "✉️ Demander un devis"
+        },
+
+        services: {
+          from: "Dès",
+          websiteTitle: "Site web",
+          websiteText:
+            "Création de sites modernes, responsives et adaptés à votre activité.",
+          softwareTitle: "Logiciel sur mesure",
+          softwareText:
+            "Applications et outils métier conçus selon vos besoins.",
+          automationTitle: "Automatisation",
+          automationText:
+            "Automatisation des tâches répétitives et optimisation des processus.",
+          dataTitle: "Data & IA",
+          dataText:
+            "Données, tableaux de bord et intégration de solutions IA.",
+          securityTitle: "Cybersécurité",
+          securityText:
+            "Audit technique, sécurité et recommandations d'amélioration.",
+          maintenanceTitle: "Maintenance",
+          maintenanceText:
+            "Suivi, corrections et évolutions de votre solution.",
+          auditTitle: "Audit & conseil",
+          auditText:
+            "Analyse technique et accompagnement dans vos choix numériques.",
+          trainingTitle: "Formation",
+          trainingText:
+            "Formation et accompagnement technique adaptés à votre niveau."
+        },
+
+        table: {
+          service: "Prestation",
+          description: "Description",
+          price: "Tarif indicatif",
+          site: "Site vitrine",
+          siteDesc: "Jusqu'à 5 pages",
+          shop: "Site e-commerce léger",
+          shopDesc: "Boutique en ligne avec fonctionnalités essentielles",
+          internal: "Petit outil interne",
+          internalDesc: "Application métier simple",
+          business: "Logiciel métier complet",
+          businessDesc: "Solution personnalisée selon cahier des charges",
+          quote: "Sur devis",
+          automation: "Automatisation de tâches",
+          automationDesc: "Automatisation d'un processus",
+          api: "Intégration API",
+          apiDesc: "Connexion avec un service externe",
+          dashboard: "Tableau de bord data",
+          dashboardDesc: "Visualisation et suivi des données",
+          ai: "Intégration IA",
+          aiDesc: "Intégration d'une solution d'intelligence artificielle",
+          audit: "Audit technique / sécurité",
+          auditDesc: "Analyse et recommandations",
+          maintenanceBasic: "Maintenance essentielle",
+          maintenanceBasicDesc: "Suivi et corrections",
+          maintenanceComfort: "Maintenance confort",
+          maintenanceComfortDesc: "Suivi, corrections et petites évolutions",
+          training: "Formation",
+          trainingDesc: "1 journée",
+          dailyRate: "TJM",
+          dailyRateDesc: "Tarif journalier moyen"
+        },
+
+        packs: {
+          eyebrow: "Packages · Packs",
+          title: "Des formules simples.",
+          webTitle: "🌐 Présence web",
+          webText:
+            "Une solution simple pour lancer ou moderniser votre présence en ligne.",
+          digitalTitle: "⚙️ Digitalisation",
+          digitalText:
+            "Un accompagnement pour transformer un processus manuel en solution numérique.",
+          itTitle: "🛡️ Sérénité IT",
+          itText:
+            "Maintenance et accompagnement régulier pour votre solution."
+        },
+
+        conditions: {
+          eyebrow: "Conditions",
+          title: "Conditions commerciales",
+          paymentTitle: "💳 Paiement",
+          quote: "Devis gratuit sous 48 h",
+          deposit: "Acompte de 30 %",
+          balance: "Solde à la livraison",
+          payment: "Paiement à 15 jours",
+          infoTitle: "📍 Informations",
+          smart: "Facturation via Smart Liège",
+          vat: "TVA BE en vigueur",
+          travel: "Déplacement Liège inclus",
+          km: "Hors Liège : 0,40 €/km",
+          validity: "Tarifs valables jusqu'au 31/12/2026"
+        },
+
+        contact: {
+          title: "Vous avez un projet ?",
+          description:
+            "Parlons de votre idée et voyons ensemble comment la transformer en une solution numérique concrète.",
+          email: "✉️ Envoyer un email",
+          call: "📞 Appeler",
+          location: "🇧🇪 Belgique · Liège"
+        },
+
+        footer: {
+          role: "Ingénieure logiciel",
+          top: "↑ Retour en haut"
+        }
+      },
+
+
+      /* =====================================================
+         ENGLISH
+      ===================================================== */
+
+      en: {
+
+        nav: {
+          about: "About",
+          skills: "Skills",
+          projects: "Projects",
+          creations: "Creations",
+          pricing: "Pricing",
+          contact: "Contact"
+        },
+
+        hero: {
+          badge: "🇧🇪 Belgium · Liège · Independent",
+          title: "Software Engineer",
+          description:
+            "I provide custom web and software development services for individuals, freelancers, non-profits and businesses. I turn ideas into modern websites, applications and digital solutions tailored to your needs.",
+          services: "View my services",
+          contact: "Get in touch"
+        },
+
+        about: {
+          eyebrow: "About",
+          title: "Digital solutions designed around your needs.",
+          description:
+            "Software development, web development and technical support focused on building useful, modern and easy-to-use solutions.",
+          devTitle: "💻 Development",
+          devText:
+            "Websites, applications and custom software designed around the specific needs of each project.",
+          supportTitle: "🤝 Support",
+          supportText:
+            "A simple and transparent approach, from requirements analysis to deployment and maintenance."
+        },
+
+        skills: {
+          eyebrow: "Skills",
+          title: "A versatile technical profile.",
+          description:
+            "Technical expertise to support a wide range of digital projects.",
+          webTitle: "Web",
+          webText:
+            "Business websites, web interfaces, responsive design and integration.",
+          softwareTitle: "Software",
+          softwareText:
+            "Custom applications and business tools.",
+          aiTitle: "Data & AI",
+          aiText:
+            "Automation, data processing and AI solution integration.",
+          securityTitle: "Cybersecurity",
+          securityText:
+            "Audits, best practices and technical security improvements."
+        },
+
+        projects: {
+          eyebrow: "Projects",
+          title: "Selected projects.",
+          description:
+            "Discover a selection of my projects and experiments.",
+          nexora:
+            "A web project developed to showcase a digital solution with a modern and responsive interface.",
+          discover: "Discover Nexora →",
+          portfolio:
+            "My professional portfolio showcasing my profile, skills, projects and services.",
+          viewPortfolio: "View portfolio →",
+          customTitle: "Custom solutions",
+          customText:
+            "Digital tools developed for the specific needs of freelancers and businesses.",
+          viewServices: "View services →"
+        },
+
+        creations: {
+          eyebrow: "Creations",
+          title: "My creations.",
+          description:
+            "Explore my creative projects and digital products.",
+          itch:
+            "Discover my creative experiments and projects around games and development.",
+          visitItch: "Visit Itch.io →",
+          payhip:
+            "Find my digital products and resources online.",
+          visitPayhip: "View on Payhip →",
+          nexora:
+            "A web project available online.",
+          discoverNexora: "Discover Nexora →"
+        },
+
+        pricing: {
+          eyebrow: "Services · Pricing",
+          title: "Services & Pricing 2026",
+          description:
+            "Development and technical services for SMEs, non-profits, freelancers and project owners.",
+          intro:
+            "Independent Software Engineer — Billing through Smart Liège. The prices below are indicative and may be adjusted depending on project complexity, features and requirements.",
+          print: "🖨️ Print / Save as PDF",
+          quote: "✉️ Request a quote",
+          detailsEyebrow: "Detailed pricing",
+          detailsTitle: "Pricing table",
+          different: "Have a different project?",
+          differentText:
+            "Every project is unique. A custom quote can be prepared based on your objectives, constraints and required features.",
+          askQuote: "✉️ Request a quote"
+        },
+
+        services: {
+          from: "From",
+          websiteTitle: "Website",
+          websiteText:
+            "Modern, responsive websites tailored to your business.",
+          softwareTitle: "Custom software",
+          softwareText:
+            "Applications and business tools designed around your needs.",
+          automationTitle: "Automation",
+          automationText:
+            "Automation of repetitive tasks and process optimisation.",
+          dataTitle: "Data & AI",
+          dataText:
+            "Data solutions, dashboards and AI integration.",
+          securityTitle: "Cybersecurity",
+          securityText:
+            "Technical audits, security and improvement recommendations.",
+          maintenanceTitle: "Maintenance",
+          maintenanceText:
+            "Monitoring, fixes and ongoing improvements.",
+          auditTitle: "Audit & consulting",
+          auditText:
+            "Technical analysis and guidance for your digital decisions.",
+          trainingTitle: "Training",
+          trainingText:
+            "Technical training and support adapted to your level."
+        },
+
+        table: {
+          service: "Service",
+          description: "Description",
+          price: "Indicative price",
+          site: "Business website",
+          siteDesc: "Up to 5 pages",
+          shop: "Light e-commerce website",
+          shopDesc: "Online store with essential features",
+          internal: "Small internal tool",
+          internalDesc: "Simple business application",
+          business: "Full business software",
+          businessDesc: "Custom solution based on requirements",
+          quote: "On request",
+          automation: "Task automation",
+          automationDesc: "Automation of a process",
+          api: "API integration",
+          apiDesc: "Connection with an external service",
+          dashboard: "Data dashboard",
+          dashboardDesc: "Data visualisation and monitoring",
+          ai: "AI integration",
+          aiDesc: "Integration of an artificial intelligence solution",
+          audit: "Technical / security audit",
+          auditDesc: "Analysis and recommendations",
+          maintenanceBasic: "Essential maintenance",
+          maintenanceBasicDesc: "Monitoring and fixes",
+          maintenanceComfort: "Comfort maintenance",
+          maintenanceComfortDesc: "Monitoring, fixes and small improvements",
+          training: "Training",
+          trainingDesc: "1 day",
+          dailyRate: "Daily rate",
+          dailyRateDesc: "Average daily rate"
+        },
+
+        packs: {
+          eyebrow: "Packages",
+          title: "Simple packages.",
+          webTitle: "🌐 Web presence",
+          webText:
+            "A simple solution to launch or modernise your online presence.",
+          digitalTitle: "⚙️ Digitalisation",
+          digitalText:
+            "Support to transform a manual process into a digital solution.",
+          itTitle: "🛡️ IT peace of mind",
+          itText:
+            "Regular maintenance and technical support for your solution."
+        },
+
+        conditions: {
+          eyebrow: "Terms",
+          title: "Business terms",
+          paymentTitle: "💳 Payment",
+          quote: "Free quote within 48 hours",
+          deposit: "30% deposit",
+          balance: "Balance upon delivery",
+          payment: "Payment within 15 days",
+          infoTitle: "📍 Information",
+          smart: "Billing through Smart Liège",
+          vat: "Belgian VAT applicable",
+          travel: "Liège travel included",
+          km: "Outside Liège: €0.40/km",
+          validity: "Prices valid until 31/12/2026"
+        },
+
+        contact: {
+          title: "Have a project?",
+          description:
+            "Let's discuss your idea and see how we can turn it into a concrete digital solution.",
+          email: "✉️ Send an email",
+          call: "📞 Call",
+          location: "🇧🇪 Belgium · Liège"
+        },
+
+        footer: {
+          role: "Software Engineer",
+          top: "↑ Back to top"
+        }
+      },
+
+
+      /* =====================================================
+         NEDERLANDS
+      ===================================================== */
+
+      nl: {
+
+        nav: {
+          about: "Over mij",
+          skills: "Vaardigheden",
+          projects: "Projecten",
+          creations: "Creaties",
+          pricing: "Tarieven",
+          contact: "Contact"
+        },
+
+        hero: {
+          badge: "🇧🇪 België · Luik · Zelfstandig",
+          title: "Software Engineer",
+          description:
+            "Ik bied maatwerkdiensten aan voor web- en softwareontwikkeling voor particulieren, zelfstandigen, non-profitorganisaties en bedrijven. Ik zet ideeën om in moderne websites, applicaties en digitale oplossingen.",
+          services: "Bekijk mijn diensten",
+          contact: "Contact opnemen"
+        },
+
+        about: {
+          eyebrow: "Over mij",
+          title: "Digitale oplossingen afgestemd op uw behoeften.",
+          description:
+            "Softwareontwikkeling, webontwikkeling en technische begeleiding met focus op nuttige, moderne en gebruiksvriendelijke oplossingen.",
+          devTitle: "💻 Ontwikkeling",
+          devText:
+            "Websites, applicaties en maatwerksoftware afgestemd op de specifieke behoeften van elk project.",
+          supportTitle: "🤝 Begeleiding",
+          supportText:
+            "Een eenvoudige en transparante aanpak, van behoefteanalyse tot lancering en onderhoud."
+        },
+
+        skills: {
+          eyebrow: "Vaardigheden",
+          title: "Een veelzijdig technisch profiel.",
+          description:
+            "Technische expertise voor verschillende soorten digitale projecten.",
+          webTitle: "Web",
+          webText:
+            "Websites, webinterfaces, responsive design en integratie.",
+          softwareTitle: "Software",
+          softwareText:
+            "Maatwerkapplicaties en bedrijfstools.",
+          aiTitle: "Data & AI",
+          aiText:
+            "Automatisering, gegevensverwerking en AI-integratie.",
+          securityTitle: "Cybersecurity",
+          securityText:
+            "Audits, goede praktijken en technische beveiligingsverbeteringen."
+        },
+
+        projects: {
+          eyebrow: "Projecten",
+          title: "Enkele projecten.",
+          description:
+            "Ontdek een selectie van mijn projecten en experimenten.",
+          nexora:
+            "Een webproject ontwikkeld om een digitale oplossing te presenteren met een moderne en responsive interface.",
+          discover: "Ontdek Nexora →",
+          portfolio:
+            "Mijn professioneel portfolio met mijn profiel, vaardigheden, projecten en diensten.",
+          viewPortfolio: "Bekijk portfolio →",
+          customTitle: "Maatwerkoplossingen",
+          customText:
+            "Digitale tools ontwikkeld voor de specifieke behoeften van zelfstandigen en bedrijven.",
+          viewServices: "Bekijk diensten →"
+        },
+
+        creations: {
+          eyebrow: "Creaties",
+          title: "Mijn creaties.",
+          description:
+            "Ontdek ook mijn creatieve projecten en digitale producten.",
+          itch:
+            "Ontdek mijn creatieve experimenten rond games en ontwikkeling.",
+          visitItch: "Bezoek Itch.io →",
+          payhip:
+            "Bekijk mijn digitale producten en online bronnen.",
+          visitPayhip: "Bekijk op Payhip →",
+          nexora:
+            "Een webproject dat online beschikbaar is.",
+          discoverNexora: "Ontdek Nexora →"
+        },
+
+        pricing: {
+          eyebrow: "Diensten · Tarieven",
+          title: "Diensten & Tarieven 2026",
+          description:
+            "Ontwikkelings- en technische diensten voor kmo's, verenigingen, zelfstandigen en projecthouders.",
+          intro:
+            "Zelfstandig Software Engineer — Facturatie via Smart Liège. De onderstaande prijzen zijn indicatief en kunnen worden aangepast volgens de complexiteit, functionaliteiten en behoeften van het project.",
+          print: "🖨️ Afdrukken / Opslaan als PDF",
+          quote: "✉️ Offerte aanvragen",
+          detailsEyebrow: "Gedetailleerde tarieven",
+          detailsTitle: "Tarieventabel",
+          different: "Een ander project?",
+          differentText:
+            "Elk project is uniek. Op basis van uw doelstellingen, beperkingen en gewenste functies kan een offerte op maat worden opgesteld.",
+          askQuote: "✉️ Offerte aanvragen"
+        },
+
+        services: {
+          from: "Vanaf",
+          websiteTitle: "Website",
+          websiteText:
+            "Moderne, responsive websites aangepast aan uw activiteit.",
+          softwareTitle: "Maatwerksoftware",
+          softwareText:
+            "Applicaties en bedrijfstools ontworpen volgens uw behoeften.",
+          automationTitle: "Automatisering",
+          automationText:
+            "Automatisering van repetitieve taken en optimalisatie van processen.",
+          dataTitle: "Data & AI",
+          dataText:
+            "Dataoplossingen, dashboards en AI-integratie.",
+          securityTitle: "Cybersecurity",
+          securityText:
+            "Technische audits, beveiliging en aanbevelingen voor verbetering.",
+          maintenanceTitle: "Onderhoud",
+          maintenanceText:
+            "Opvolging, correcties en verdere verbeteringen.",
+          auditTitle: "Audit & advies",
+          auditText:
+            "Technische analyse en begeleiding bij digitale keuzes.",
+          trainingTitle: "Opleiding",
+          trainingText:
+            "Technische opleiding en begeleiding aangepast aan uw niveau."
+        },
+
+        table: {
+          service: "Dienst",
+          description: "Beschrijving",
+          price: "Indicatieve prijs",
+          site: "Bedrijfswebsite",
+          siteDesc: "Tot 5 pagina's",
+          shop: "Lichte e-commercewebsite",
+          shopDesc: "Webshop met essentiële functies",
+          internal: "Kleine interne tool",
+          internalDesc: "Eenvoudige bedrijfstoepassing",
+          business: "Volledige bedrijfssoftware",
+          businessDesc: "Maatwerkoplossing volgens vereisten",
+          quote: "Op aanvraag",
+          automation: "Taakautomatisering",
+          automationDesc: "Automatisering van een proces",
+          api: "API-integratie",
+          apiDesc: "Verbinding met een externe dienst",
+          dashboard: "Data-dashboard",
+          dashboardDesc: "Visualisatie en opvolging van gegevens",
+          ai: "AI-integratie",
+          aiDesc: "Integratie van een oplossing voor artificiële intelligentie",
+          audit: "Technische / beveiligingsaudit",
+          auditDesc: "Analyse en aanbevelingen",
+          maintenanceBasic: "Essentieel onderhoud",
+          maintenanceBasicDesc: "Opvolging en correcties",
+          maintenanceComfort: "Uitgebreid onderhoud",
+          maintenanceComfortDesc: "Opvolging, correcties en kleine verbeteringen",
+          training: "Opleiding",
+          trainingDesc: "1 dag",
+          dailyRate: "Dagtarief",
+          dailyRateDesc: "Gemiddeld dagtarief"
+        },
+
+        packs: {
+          eyebrow: "Pakketten",
+          title: "Eenvoudige formules.",
+          webTitle: "🌐 Webaanwezigheid",
+          webText:
+            "Een eenvoudige oplossing om uw online aanwezigheid te starten of te moderniseren.",
+          digitalTitle: "⚙️ Digitalisering",
+          digitalText:
+            "Begeleiding om een manueel proces om te zetten in een digitale oplossing.",
+          itTitle: "🛡️ IT-gemoedsrust",
+          itText:
+            "Regelmatig onderhoud en technische ondersteuning voor uw oplossing."
+        },
+
+        conditions: {
+          eyebrow: "Voorwaarden",
+          title: "Commerciële voorwaarden",
+          paymentTitle: "💳 Betaling",
+          quote: "Gratis offerte binnen 48 uur",
+          deposit: "Voorschot van 30%",
+          balance: "Saldo bij oplevering",
+          payment: "Betaling binnen 15 dagen",
+          infoTitle: "📍 Informatie",
+          smart: "Facturatie via Smart Liège",
+          vat: "Belgische btw van toepassing",
+          travel: "Verplaatsing in Luik inbegrepen",
+          km: "Buiten Luik: €0,40/km",
+          validity: "Prijzen geldig tot 31/12/2026"
+        },
+
+        contact: {
+          title: "Heeft u een project?",
+          description:
+            "Laten we uw idee bespreken en bekijken hoe we het kunnen omzetten in een concrete digitale oplossing.",
+          email: "✉️ Een e-mail sturen",
+          call: "📞 Bellen",
+          location: "🇧🇪 België · Luik"
+        },
+
+        footer: {
+          role: "Software Engineer",
+          top: "↑ Terug naar boven"
+        }
+      },
+
+
+      /* =====================================================
+         DEUTSCH
+      ===================================================== */
+
+      de: {
+
+        nav: {
+          about: "Über mich",
+          skills: "Kompetenzen",
+          projects: "Projekte",
+          creations: "Kreationen",
+          pricing: "Preise",
+          contact: "Kontakt"
+        },
+
+        hero: {
+          badge: "🇧🇪 Belgien · Lüttich · Selbstständig",
+          title: "Softwareentwicklerin",
+          description:
+            "Ich biete individuelle Dienstleistungen für Web- und Softwareentwicklung für Privatpersonen, Selbstständige, gemeinnützige Organisationen und Unternehmen an. Ich verwandle Ideen in moderne Websites, Anwendungen und digitale Lösungen.",
+          services: "Meine Leistungen",
+          contact: "Kontakt aufnehmen"
+        },
+
+        about: {
+          eyebrow: "Über mich",
+          title: "Digitale Lösungen, die auf Ihre Bedürfnisse zugeschnitten sind.",
+          description:
+            "Softwareentwicklung, Webentwicklung und technische Beratung mit dem Ziel, nützliche, moderne und benutzerfreundliche Lösungen zu entwickeln.",
+          devTitle: "💻 Entwicklung",
+          devText:
+            "Websites, Anwendungen und individuelle Software für die spezifischen Anforderungen jedes Projekts.",
+          supportTitle: "🤝 Begleitung",
+          supportText:
+            "Ein einfacher und transparenter Ansatz – von der Bedarfsanalyse bis zur Veröffentlichung und Wartung."
+        },
+
+        skills: {
+          eyebrow: "Kompetenzen",
+          title: "Ein vielseitiges technisches Profil.",
+          description:
+            "Technische Kompetenzen für unterschiedliche Arten von Digitalprojekten.",
+          webTitle: "Web",
+          webText:
+            "Websites, Weboberflächen, Responsive Design und Integration.",
+          softwareTitle: "Software",
+          softwareText:
+            "Individuelle Anwendungen und Geschäftstools.",
+          aiTitle: "Data & KI",
+          aiText:
+            "Automatisierung, Datenverarbeitung und Integration von KI-Lösungen.",
+          securityTitle: "Cybersicherheit",
+          securityText:
+            "Audits, Best Practices und technische Sicherheitsverbesserungen."
+        },
+
+        projects: {
+          eyebrow: "Projekte",
+          title: "Ausgewählte Projekte.",
+          description:
+            "Entdecken Sie eine Auswahl meiner Projekte und Experimente.",
+          nexora:
+            "Ein Webprojekt zur Präsentation einer digitalen Lösung mit einer modernen und responsiven Benutzeroberfläche.",
+          discover: "Nexora entdecken →",
+          portfolio:
+            "Mein professionelles Portfolio mit meinem Profil, meinen Kompetenzen, Projekten und Dienstleistungen.",
+          viewPortfolio: "Portfolio ansehen →",
+          customTitle: "Individuelle Lösungen",
+          customText:
+            "Digitale Tools für die spezifischen Bedürfnisse von Selbstständigen und Unternehmen.",
+          viewServices: "Leistungen ansehen →"
+        },
+
+        creations: {
+          eyebrow: "Kreationen",
+          title: "Meine Kreationen.",
+          description:
+            "Entdecken Sie auch meine kreativen Projekte und digitalen Produkte.",
+          itch:
+            "Entdecken Sie meine kreativen Experimente rund um Spiele und Entwicklung.",
+          visitItch: "Itch.io besuchen →",
+          payhip:
+            "Entdecken Sie meine digitalen Produkte und Ressourcen online.",
+          visitPayhip: "Auf Payhip ansehen →",
+          nexora:
+            "Ein online verfügbares Webprojekt.",
+          discoverNexora: "Nexora entdecken →"
+        },
+
+        pricing: {
+          eyebrow: "Leistungen · Preise",
+          title: "Leistungen & Preise 2026",
+          description:
+            "Entwicklungs- und technische Dienstleistungen für KMU, Vereine, Selbstständige und Projektträger.",
+          intro:
+            "Selbstständige Softwareentwicklerin — Abrechnung über Smart Liège. Die folgenden Preise sind Richtwerte und können je nach Komplexität, Funktionen und Projektanforderungen angepasst werden.",
+          print: "🖨️ Drucken / Als PDF speichern",
+          quote: "✉️ Angebot anfordern",
+          detailsEyebrow: "Detaillierte Preise",
+          detailsTitle: "Preisliste",
+          different: "Ein anderes Projekt?",
+          differentText:
+            "Jedes Projekt ist einzigartig. Auf Grundlage Ihrer Ziele, Rahmenbedingungen und gewünschten Funktionen kann ein individuelles Angebot erstellt werden.",
+          askQuote: "✉️ Angebot anfordern"
+        },
+
+        services: {
+          from: "Ab",
+          websiteTitle: "Website",
+          websiteText:
+            "Moderne, responsive Websites passend zu Ihrem Unternehmen.",
+          softwareTitle: "Individuelle Software",
+          softwareText:
+            "Anwendungen und Geschäftstools nach Ihren Anforderungen.",
+          automationTitle: "Automatisierung",
+          automationText:
+            "Automatisierung wiederkehrender Aufgaben und Optimierung von Prozessen.",
+          dataTitle: "Data & KI",
+          dataText:
+            "Datenlösungen, Dashboards und KI-Integration.",
+          securityTitle: "Cybersicherheit",
+          securityText:
+            "Technische Audits, Sicherheit und Verbesserungsempfehlungen.",
+          maintenanceTitle: "Wartung",
+          maintenanceText:
+            "Betreuung, Fehlerbehebungen und Weiterentwicklungen.",
+          auditTitle: "Audit & Beratung",
+          auditText:
+            "Technische Analyse und Beratung bei digitalen Entscheidungen.",
+          trainingTitle: "Schulung",
+          trainingText:
+            "Technische Schulungen und Unterstützung passend zu Ihrem Niveau."
+        },
+
+        table: {
+          service: "Leistung",
+          description: "Beschreibung",
+          price: "Richtpreis",
+          site: "Unternehmenswebsite",
+          siteDesc: "Bis zu 5 Seiten",
+          shop: "Kleiner E-Commerce-Shop",
+          shopDesc: "Online-Shop mit grundlegenden Funktionen",
+          internal: "Kleines internes Tool",
+          internalDesc: "Einfache Geschäftsanwendung",
+          business: "Vollständige Geschäftsanwendung",
+          businessDesc: "Individuelle Lösung nach Anforderungen",
+          quote: "Auf Anfrage",
+          automation: "Aufgabenautomatisierung",
+          automationDesc: "Automatisierung eines Prozesses",
+          api: "API-Integration",
+          apiDesc: "Verbindung mit einem externen Dienst",
+          dashboard: "Daten-Dashboard",
+          dashboardDesc: "Visualisierung und Überwachung von Daten",
+          ai: "KI-Integration",
+          aiDesc: "Integration einer Lösung für künstliche Intelligenz",
+          audit: "Technisches / Sicherheits-Audit",
+          auditDesc: "Analyse und Empfehlungen",
+          maintenanceBasic: "Basis-Wartung",
+          maintenanceBasicDesc: "Überwachung und Fehlerbehebung",
+          maintenanceComfort: "Komfort-Wartung",
+          maintenanceComfortDesc: "Überwachung, Fehlerbehebung und kleinere Weiterentwicklungen",
+          training: "Schulung",
+          trainingDesc: "1 Tag",
+          dailyRate: "Tagessatz",
+          dailyRateDesc: "Durchschnittlicher Tagessatz"
+        },
+
+        packs: {
+          eyebrow: "Pakete",
+          title: "Einfache Pakete.",
+          webTitle: "🌐 Online-Präsenz",
+          webText:
+            "Eine einfache Lösung für den Start oder die Modernisierung Ihrer Online-Präsenz.",
+          digitalTitle: "⚙️ Digitalisierung",
+          digitalText:
+            "Unterstützung bei der Umwandlung eines manuellen Prozesses in eine digitale Lösung.",
+          itTitle: "🛡️ IT-Sicherheit",
+          itText:
+            "Regelmäßige Wartung und technische Unterstützung für Ihre Lösung."
+        },
+
+        conditions: {
+          eyebrow: "Bedingungen",
+          title: "Geschäftsbedingungen",
+          paymentTitle: "💳 Zahlung",
+          quote: "Kostenloses Angebot innerhalb von 48 Stunden",
+          deposit: "30 % Anzahlung",
+          balance: "Restzahlung bei Lieferung",
+          payment: "Zahlung innerhalb von 15 Tagen",
+          infoTitle: "📍 Informationen",
+          smart: "Abrechnung über Smart Liège",
+          vat: "Belgische MwSt. gemäß den geltenden Bestimmungen",
+          travel: "Anfahrt in Lüttich inklusive",
+          km: "Außerhalb von Lüttich: 0,40 €/km",
+          validity: "Preise gültig bis zum 31.12.2026"
+        },
+
+        contact: {
+          title: "Sie haben ein Projekt?",
+          description:
+            "Besprechen wir Ihre Idee und sehen wir gemeinsam, wie daraus eine konkrete digitale Lösung entstehen kann.",
+          email: "✉️ E-Mail senden",
+          call: "📞 Anrufen",
+          location: "🇧🇪 Belgien · Lüttich"
+        },
+
+        footer: {
+          role: "Softwareentwicklerin",
+          top: "↑ Nach oben"
+        }
+      },
+
+
+      /* =====================================================
+         ESPAÑOL
+      ===================================================== */
+
+      es: {
+
+        nav: {
+          about: "Sobre mí",
+          skills: "Competencias",
+          projects: "Proyectos",
+          creations: "Creaciones",
+          pricing: "Tarifas",
+          contact: "Contacto"
+        },
+
+        hero: {
+          badge: "🇧🇪 Bélgica · Lieja · Independiente",
+          title: "Ingeniera de software",
+          description:
+            "Ofrezco servicios personalizados de desarrollo web y software para particulares, autónomos, organizaciones sin ánimo de lucro y empresas. Transformo ideas en sitios web, aplicaciones y soluciones digitales modernas adaptadas a sus necesidades.",
+          services: "Ver mis servicios",
+          contact: "Contactarme"
+        },
+
+        about: {
+          eyebrow: "Sobre mí",
+          title: "Soluciones digitales pensadas para sus necesidades.",
+          description:
+            "Desarrollo de software, desarrollo web y acompañamiento técnico con el objetivo de crear soluciones útiles, modernas y fáciles de utilizar.",
+          devTitle: "💻 Desarrollo",
+          devText:
+            "Creación de sitios web, aplicaciones y software personalizado adaptado a las necesidades específicas de cada proyecto.",
+          supportTitle: "🤝 Acompañamiento",
+          supportText:
+            "Un enfoque sencillo y transparente, desde el análisis de necesidades hasta la puesta en línea y el mantenimiento."
+        },
+
+        skills: {
+          eyebrow: "Competencias",
+          title: "Un perfil técnico versátil.",
+          description:
+            "Competencias técnicas para acompañar diferentes tipos de proyectos digitales.",
+          webTitle: "Web",
+          webText:
+            "Sitios web, interfaces web, diseño responsive e integración.",
+          softwareTitle: "Software",
+          softwareText:
+            "Aplicaciones y herramientas empresariales personalizadas.",
+          aiTitle: "Data e IA",
+          aiText:
+            "Automatización, procesamiento de datos e integración de soluciones de IA.",
+          securityTitle: "Ciberseguridad",
+          securityText:
+            "Auditorías, buenas prácticas y mejoras de seguridad técnica."
+        },
+
+        projects: {
+          eyebrow: "Proyectos",
+          title: "Algunos proyectos.",
+          description:
+            "Descubra una selección de mis proyectos y experimentos.",
+          nexora:
+            "Proyecto web desarrollado para presentar una solución digital con una interfaz moderna y responsive.",
+          discover: "Descubrir Nexora →",
+          portfolio:
+            "Mi portfolio profesional con mi perfil, competencias, proyectos y servicios.",
+          viewPortfolio: "Ver portfolio →",
+          customTitle: "Soluciones personalizadas",
+          customText:
+            "Herramientas digitales desarrolladas para las necesidades específicas de autónomos y empresas.",
+          viewServices: "Ver servicios →"
+        },
+
+        creations: {
+          eyebrow: "Creaciones",
+          title: "Mis creaciones.",
+          description:
+            "Descubra también mis proyectos creativos y productos digitales.",
+          itch:
+            "Descubra mis experimentos creativos relacionados con videojuegos y desarrollo.",
+          visitItch: "Visitar Itch.io →",
+          payhip:
+            "Encuentre mis productos y recursos digitales disponibles en línea.",
+          visitPayhip: "Ver en Payhip →",
+          nexora:
+            "Un proyecto web disponible en línea.",
+          discoverNexora: "Descubrir Nexora →"
+        },
+
+        pricing: {
+          eyebrow: "Servicios · Tarifas",
+          title: "Servicios y tarifas 2026",
+          description:
+            "Servicios de desarrollo y acompañamiento técnico para pymes, asociaciones, autónomos y proyectos digitales.",
+          intro:
+            "Ingeniera de software independiente — Facturación a través de Smart Liège. Los precios indicados son orientativos y pueden adaptarse según la complejidad, las funcionalidades y las necesidades del proyecto.",
+          print: "🖨️ Imprimir / Guardar como PDF",
+          quote: "✉️ Solicitar presupuesto",
+          detailsEyebrow: "Tarifas detalladas",
+          detailsTitle: "Tabla de tarifas",
+          different: "¿Tiene otro proyecto?",
+          differentText:
+            "Cada proyecto es único. Se puede preparar un presupuesto personalizado según sus objetivos, limitaciones y funcionalidades deseadas.",
+          askQuote: "✉️ Solicitar presupuesto"
+        },
+
+        services: {
+          from: "Desde",
+          websiteTitle: "Sitio web",
+          websiteText:
+            "Sitios web modernos, responsive y adaptados a su actividad.",
+          softwareTitle: "Software personalizado",
+          softwareText:
+            "Aplicaciones y herramientas empresariales diseñadas según sus necesidades.",
+          automationTitle: "Automatización",
+          automationText:
+            "Automatización de tareas repetitivas y optimización de procesos.",
+          dataTitle: "Data e IA",
+          dataText:
+            "Soluciones de datos, dashboards e integración de IA.",
+          securityTitle: "Ciberseguridad",
+          securityText:
+            "Auditorías técnicas, seguridad y recomendaciones de mejora.",
+          maintenanceTitle: "Mantenimiento",
+          maintenanceText:
+            "Seguimiento, correcciones y evolución de su solución.",
+          auditTitle: "Auditoría y consultoría",
+          auditText:
+            "Análisis técnico y acompañamiento en sus decisiones digitales.",
+          trainingTitle: "Formación",
+          trainingText:
+            "Formación técnica y acompañamiento adaptados a su nivel."
+        },
+
+        table: {
+          service: "Servicio",
+          description: "Descripción",
+          price: "Precio orientativo",
+          site: "Sitio web corporativo",
+          siteDesc: "Hasta 5 páginas",
+          shop: "Sitio e-commerce ligero",
+          shopDesc: "Tienda online con funciones esenciales",
+          internal: "Pequeña herramienta interna",
+          internalDesc: "Aplicación empresarial sencilla",
+          business: "Software empresarial completo",
+          businessDesc: "Solución personalizada según requisitos",
+          quote: "Presupuesto",
+          automation: "Automatización de tareas",
+          automationDesc: "Automatización de un proceso",
+          api: "Integración API",
+          apiDesc: "Conexión con un servicio externo",
+          dashboard: "Dashboard de datos",
+          dashboardDesc: "Visualización y seguimiento de datos",
+          ai: "Integración de IA",
+          aiDesc: "Integración de una solución de inteligencia artificial",
+          audit: "Auditoría técnica / seguridad",
+          auditDesc: "Análisis y recomendaciones",
+          maintenanceBasic: "Mantenimiento esencial",
+          maintenanceBasicDesc: "Seguimiento y correcciones",
+          maintenanceComfort: "Mantenimiento confort",
+          maintenanceComfortDesc: "Seguimiento, correcciones y pequeñas mejoras",
+          training: "Formación",
+          trainingDesc: "1 día",
+          dailyRate: "Tarifa diaria",
+          dailyRateDesc: "Tarifa diaria media"
+        },
+
+        packs: {
+          eyebrow: "Paquetes",
+          title: "Fórmulas sencillas.",
+          webTitle: "🌐 Presencia web",
+          webText:
+            "Una solución sencilla para lanzar o modernizar su presencia en línea.",
+          digitalTitle: "⚙️ Digitalización",
+          digitalText:
+            "Acompañamiento para transformar un proceso manual en una solución digital.",
+          itTitle: "🛡️ Tranquilidad IT",
+          itText:
+            "Mantenimiento y acompañamiento técnico regular para su solución."
+        },
+
+        conditions: {
+          eyebrow: "Condiciones",
+          title: "Condiciones comerciales",
+          paymentTitle: "💳 Pago",
+          quote: "Presupuesto gratuito en 48 horas",
+          deposit: "Anticipo del 30 %",
+          balance: "Saldo a la entrega",
+          payment: "Pago a 15 días",
+          infoTitle: "📍 Información",
+          smart: "Facturación a través de Smart Liège",
+          vat: "IVA belga según la normativa vigente",
+          travel: "Desplazamiento en Lieja incluido",
+          km: "Fuera de Lieja: 0,40 €/km",
+          validity: "Tarifas válidas hasta el 31/12/2026"
+        },
+
+        contact: {
+          title: "¿Tiene un proyecto?",
+          description:
+            "Hablemos de su idea y veamos juntos cómo convertirla en una solución digital concreta.",
+          email: "✉️ Enviar un email",
+          call: "📞 Llamar",
+          location: "🇧🇪 Bélgica · Lieja"
+        },
+
+        footer: {
+          role: "Ingeniera de software",
+          top: "↑ Volver arriba"
+        }
+      }
+
+    };
+
+
+    /* =====================================================
+       LANGUAGE MANAGEMENT
+    ===================================================== */
+
+    const languageButton =
+      document.getElementById("languageButton");
+
+    const languageMenu =
+      document.getElementById("languageMenu");
+
+    const currentLanguage =
+      document.getElementById("currentLanguage");
+
+
+    const languageFlags = {
+      fr: "🇫🇷",
+      en: "🇬🇧",
+      nl: "🇳🇱",
+      de: "🇩🇪",
+      es: "🇪🇸"
+    };
+
+
+    function getTranslation(object, path) {
+
+      return path
+        .split(".")
+        .reduce((result, key) => {
+
+          if (result && result[key] !== undefined) {
+            return result[key];
+          }
+
+          return null;
+
+        }, object);
+
+    }
+
+
+    function updateLanguage(lang) {
+
+      const dictionary =
+        translations[lang] || translations.fr;
+
+      document.documentElement.lang = lang;
+
+      document
+        .querySelectorAll("[data-i18n]")
+        .forEach((element) => {
+
+          const key =
+            element.getAttribute("data-i18n");
+
+          const translation =
+            getTranslation(dictionary, key);
+
+          if (translation !== null) {
+            element.textContent = translation;
           }
 
         });
 
-      },
-      {
-        threshold: 0.12
+
+      currentLanguage.textContent =
+        lang.toUpperCase();
+
+      languageButton.firstChild.textContent =
+        languageFlags[lang] + " ";
+
+      document
+        .querySelectorAll(".language-menu button")
+        .forEach((button) => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.lang === lang
+          );
+
+        });
+
+
+      localStorage.setItem(
+        "preferredLanguage",
+        lang
+      );
+
+
+      /*
+       * Mise à jour du titre et de la description SEO.
+       */
+
+      const seo = {
+
+        fr: {
+          title:
+            "Stéphanie Vanschoor — Ingénieure logiciel",
+          description:
+            "Stéphanie Vanschoor — Ingénieure logiciel indépendante en Belgique. Développement web, logiciels sur mesure, automatisation, Data & IA, cybersécurité et maintenance."
+        },
+
+        en: {
+          title:
+            "Stéphanie Vanschoor — Software Engineer",
+          description:
+            "Stéphanie Vanschoor — Independent Software Engineer in Belgium. Web development, custom software, automation, Data & AI, cybersecurity and maintenance."
+        },
+
+        nl: {
+          title:
+            "Stéphanie Vanschoor — Software Engineer",
+          description:
+            "Stéphanie Vanschoor — Zelfstandig Software Engineer in België. Webontwikkeling, maatwerksoftware, automatisering, Data & AI, cybersecurity en onderhoud."
+        },
+
+        de: {
+          title:
+            "Stéphanie Vanschoor — Softwareentwicklerin",
+          description:
+            "Stéphanie Vanschoor — Selbstständige Softwareentwicklerin in Belgien. Webentwicklung, individuelle Software, Automatisierung, Data & KI, Cybersicherheit und Wartung."
+        },
+
+        es: {
+          title:
+            "Stéphanie Vanschoor — Ingeniera de software",
+          description:
+            "Stéphanie Vanschoor — Ingeniera de software independiente en Bélgica. Desarrollo web, software personalizado, automatización, Data e IA, ciberseguridad y mantenimiento."
+        }
+
+      };
+
+      document.title = seo[lang].title;
+
+      document
+        .querySelector('meta[name="description"]')
+        .setAttribute(
+          "content",
+          seo[lang].description
+        );
+    }
+
+
+    /* Ouvrir / fermer le menu */
+
+    languageButton.addEventListener(
+      "click",
+      function(event) {
+
+        event.stopPropagation();
+
+        languageMenu.classList.toggle("open");
+
       }
     );
 
+
+    /* Choix de la langue */
+
+    document
+      .querySelectorAll(".language-menu button")
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            const lang =
+              this.dataset.lang;
+
+            updateLanguage(lang);
+
+            languageMenu.classList.remove("open");
+
+          }
+        );
+
+      });
+
+
+    /* Fermer si clic ailleurs */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          !event.target.closest(
+            ".language-selector"
+          )
+        ) {
+          languageMenu.classList.remove("open");
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    const observer =
+      new IntersectionObserver(
+        (entries) => {
+
+          entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+            }
+
+          });
+
+        },
+        {
+          threshold: 0.12
+        }
+      );
+
+
     document
       .querySelectorAll(".reveal")
-      .forEach((element) => observer.observe(element));
+      .forEach((element) => {
+
+        observer.observe(element);
+
+      });
 
 
-    /*
-     * Fermeture automatique du menu / comportement
-     * fluide sur les liens internes.
-     */
+    /* =====================================================
+       SMOOTH INTERNAL LINKS
+    ===================================================== */
 
     document
       .querySelectorAll('a[href^="#"]')
       .forEach((link) => {
 
-        link.addEventListener("click", function(event) {
+        link.addEventListener(
+          "click",
+          function(event) {
 
-          const targetId = this.getAttribute("href");
+            const targetId =
+              this.getAttribute("href");
 
-          if (targetId === "#") {
-            return;
+            if (targetId === "#") {
+              return;
+            }
+
+            const target =
+              document.querySelector(targetId);
+
+            if (target) {
+
+              event.preventDefault();
+
+              target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+              });
+
+            }
+
           }
-
-          const target = document.querySelector(targetId);
-
-          if (target) {
-
-            event.preventDefault();
-
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start"
-            });
-
-          }
-
-        });
+        );
 
       });
+
+
+    /* =====================================================
+       INITIAL LANGUAGE
+    ===================================================== */
+
+    const savedLanguage =
+      localStorage.getItem(
+        "preferredLanguage"
+      );
+
+    const browserLanguage =
+      navigator.language
+        ? navigator.language
+            .substring(0, 2)
+            .toLowerCase()
+        : "fr";
+
+
+    const supportedLanguages =
+      ["fr", "en", "nl", "de", "es"];
+
+
+    const initialLanguage =
+      savedLanguage &&
+      supportedLanguages.includes(savedLanguage)
+
+        ? savedLanguage
+
+        : supportedLanguages.includes(browserLanguage)
+
+          ? browserLanguage
+
+          : "fr";
+
+
+    updateLanguage(initialLanguage);
 
   </script>
 
